@@ -28,7 +28,8 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
                 color: theme.palette.primary.contrastText,
             },
             input: {
-                padding: theme.spacing(2),
+                padding: theme.spacing(1),
+                fontSize: isMobile ? 14 : 16,
             },
             warning: {
                 color: theme.palette.error.light,
@@ -43,6 +44,7 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
             },
             textArea: {
                 height: isMobile ? 165 : 130,
+                fontSize: isMobile ? 14 : 16,
                 resize: "none",
             },
         })

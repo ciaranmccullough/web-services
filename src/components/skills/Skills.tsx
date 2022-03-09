@@ -35,9 +35,6 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
             card: {
                 padding: theme.spacing(isMobile ? 2 : 4),
                 width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "wrap",
             },
             row: {
                 display: "grid",
