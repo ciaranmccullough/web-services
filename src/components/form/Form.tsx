@@ -42,6 +42,9 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
             success: {
                 color: theme.palette.success.light,
             },
+            submitting: {
+                color: theme.palette.warning.light,
+            },
             fail: {
                 color: theme.palette.error.light,
             },
@@ -217,6 +220,13 @@ export default function Form() {
                                 name="message"
                             />
                             <Spacer size={2} />
+                            {isSubmitting ? (
+                                <Typography variant="h6" className={classes.submitting}>
+                                    Submitting...
+                                </Typography>
+                            ) : (
+                                <></>
+                            )}
                             {status?.ok === true ? (
                                 <Typography variant="h6" className={classes.success}>
                                     Submission successful. Thank you!
