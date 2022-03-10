@@ -31,6 +31,7 @@ export default function SocialCard() {
                             key={`${index}_${item.link}`}
                             className={classes.link}
                             href={item.link}
+                            aria-label={item.areaLabel}
                             target="_blank"
                             rel="noreferrer"
                         >

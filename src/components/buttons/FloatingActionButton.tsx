@@ -1,4 +1,3 @@
-import * as React from "react";
 import { NavHashLink } from "react-router-hash-link";
 import Fab from "@mui/material/Fab";
 import { useTheme } from "@mui/material";
@@ -26,6 +25,7 @@ export default function FloatingActionButton({ to, color, hoverColor }: IProps) 
             component={NavHashLink}
             smooth
             to={to}
+            area-label="button-up"
         >
             <NavigationIcon />
         </Fab>

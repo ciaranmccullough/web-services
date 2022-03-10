@@ -8,17 +8,21 @@ export const socials: ICard[] = [
     {
         icon: <CodepenIcon />,
         link: "https://codepen.io/your-work?item_type=collection",
+        areaLabel: "Twitter",
     },
     {
         icon: <TwitterIcon />,
         link: "https://twitter.com/Ciamcc",
+        areaLabel: "Twitter",
     },
     {
         icon: <LinkedinIcon />,
         link: "https://www.linkedin.com/in/ciaran-mccullough-5347a11b1/",
+        areaLabel: "Twitter",
     },
     {
         icon: <GithubIcon />,
         link: "https://github.com/ciaranmccullough",
+        areaLabel: "Twitter",
     },
 ];
