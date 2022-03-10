@@ -25,7 +25,7 @@ export default function FloatingActionButton({ to, color, hoverColor }: IProps) 
             component={NavHashLink}
             smooth
             to={to}
-            area-label="button-up"
+            aria-label="button-up"
         >
             <NavigationIcon />
         </Fab>

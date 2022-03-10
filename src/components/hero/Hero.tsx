@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { pageRoutes } from "../../config";
 import SunTornado from "../../assets/backgrounds/SunTornado.svg";
 import { data } from "../../data/hero";
+import { styles } from "../../theme";
 
 const useStyles = (isMobile: boolean) =>
     makeStyles((theme: Theme) =>
@@ -30,6 +31,9 @@ const useStyles = (isMobile: boolean) =>
                 display: "flex",
                 flexDirection: "column",
                 alignItems: isMobile ? "center" : "flex-start",
+            },
+            heroContainer: {
+                maxWidth: `${styles.maxWidthXl}px` + styles.cssImportant,
             },
             content: {
                 display: "flex",
@@ -80,23 +84,21 @@ export default function Hero() {
 
     return (
         <>
-            <FullPageSection classes={{ root: classes.root }}>
+            <FullPageSection classes={{ root: classes.root, container: classes.heroContainer }}>
                 <div className={classes.container}>
                     <motion.div className={classes.content} variants={sentence} initial="hidden" animate="visible">
                         <div className={classes.textBox}>
                             {heroText.split(" ").map((char, index) => {
                                 return (
-                                    <>
-                                        <Typography
-                                            key={`${index}_${char}`}
-                                            className={classes.text}
-                                            variant={isMobile ? "h4" : "h2"}
-                                            component={motion.span}
-                                            variants={letter}
-                                        >
-                                            {char + (index !== heroText.length - 1 ? "\u00A0" : "")}
-                                        </Typography>
-                                    </>
+                                    <Typography
+                                        key={`${index}_${char}`}
+                                        className={classes.text}
+                                        variant={isMobile ? "h4" : "h2"}
+                                        component={motion.span}
+                                        variants={letter}
+                                    >
+                                        {char + (index !== heroText.length - 1 ? "\u00A0" : "")}
+                                    </Typography>
                                 );
                             })}
                         </div>

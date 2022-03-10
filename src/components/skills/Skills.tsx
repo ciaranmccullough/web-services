@@ -113,8 +113,8 @@ export default function Skills() {
     function mapSkillsCardsWithAnimation(arr: ICard[], variant: Variants) {
         return arr.map((item: ICard, index: number) => {
             return (
-                <motion.div variants={variant}>
-                    <IconCard key={`${index}_${item}`} icon={item.icon} title={item.title} />
+                <motion.div key={`${index}_${item}`} variants={variant}>
+                    <IconCard icon={item.icon} title={item.title} />
                 </motion.div>
             );
         });

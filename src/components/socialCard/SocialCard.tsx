@@ -1,6 +1,5 @@
 import { Theme } from "@mui/material";
 import { makeStyles, createStyles } from "@mui/styles";
-import Spacer from "../spacer/Spacer";
 import useIsMobile from "../../hooks/useIsMobile";
 import { socials } from "../../data/social";
 import { ICard } from "../../interfaces/ISocial";
@@ -10,6 +9,7 @@ const useStyles = (isMobile: boolean) =>
         createStyles({
             root: {
                 display: "flex",
+                gap: theme.spacing(2),
                 alignItems: "center",
             },
             link: {
@@ -26,19 +26,16 @@ export default function SocialCard() {
         <span className={classes.root}>
             {socials.map((item: ICard, index: number) => {
                 return (
-                    <>
-                        <a
-                            key={`${index}_${item.link}`}
-                            className={classes.link}
-                            href={item.link}
-                            aria-label={item.areaLabel}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            {item.icon}
-                        </a>
-                        <Spacer size={2} />
-                    </>
+                    <a
+                        key={Math.random()}
+                        className={classes.link}
+                        href={item.link}
+                        aria-label={item.areaLabel}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        {item.icon}
+                    </a>
                 );
             })}
         </span>

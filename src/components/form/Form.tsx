@@ -8,6 +8,7 @@ import useIsMobile from "../../hooks/useIsMobile";
 import Spacer from "../spacer/Spacer";
 import ResetButton from "../buttons/ResetButton";
 import SubmitButton from "../buttons/SubmitButton";
+import { styles } from "../../theme";
 
 const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
     makeStyles((theme: Theme) =>
@@ -23,6 +24,9 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
                 flex: lg ? 2 : 1,
                 display: "flex",
                 flexDirection: "column",
+                borderRadius: md
+                    ? `0px 0px ${styles.defaultBorderRadius}px ${styles.defaultBorderRadius}px`
+                    : `0px ${styles.defaultBorderRadius}px ${styles.defaultBorderRadius}px 0px`,
             },
             label: {
                 color: theme.palette.primary.contrastText,
@@ -34,6 +38,12 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
             warning: {
                 color: theme.palette.error.light,
                 margin: 0,
+            },
+            success: {
+                color: theme.palette.success.light,
+            },
+            fail: {
+                color: theme.palette.error.light,
             },
             row: {
                 display: "flex",
@@ -111,7 +121,7 @@ export default function Form() {
                 onSubmit={async (values, actions) => {
                     await axios({
                         method: "POST",
-                        url: `https://formspree.io/f/xpzkkkvz`,
+                        url: process.env.REACT_APP_FORM_URL,
                         data: values,
                     })
                         .then((response) => {
@@ -208,7 +218,9 @@ export default function Form() {
                             />
                             <Spacer size={2} />
                             {status?.ok === true ? (
-                                <h5>Submission successful. Thank you!</h5>
+                                <Typography variant="h6" className={classes.success}>
+                                    Submission successful. Thank you!
+                                </Typography>
                             ) : (
                                 <div className={classes.row}>
                                     <SubmitButton disabledProps={!(isValid && dirty)} text="submit" />
@@ -216,7 +228,11 @@ export default function Form() {
                                     <ResetButton text="reset" />
                                 </div>
                             )}
-                            {status?.ok === false && <h5>Please try submitting the form again.</h5>}
+                            {status?.ok === false && (
+                                <Typography variant="h6" className={classes.fail}>
+                                    Please try submitting the form again.
+                                </Typography>
+                            )}
                         </ContactForm>
                     </div>
                 )}

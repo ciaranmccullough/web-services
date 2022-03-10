@@ -108,14 +108,8 @@ export default function Projects() {
     function mapSkillsCardsWithAnimation(arr: IProject[], variant: Variants) {
         return arr.map((item: IProject, index: number) => {
             return (
-                <motion.div variants={variant}>
-                    <MediaCard
-                        key={`${index}_${item}`}
-                        title={item.title}
-                        link={item.link}
-                        imgUrl={item.img}
-                        description={item.description}
-                    />
+                <motion.div key={`${index}_${item}`} variants={variant}>
+                    <MediaCard title={item.title} link={item.link} imgUrl={item.img} description={item.description} />
                 </motion.div>
             );
         });

@@ -33,7 +33,9 @@ export default function FullPageSection({ id, children, className, classes: over
 
     return (
         <section className={clsx(className, classes.root, overrideClasses?.root)} {...rest} id={id}>
-            <div className={classes.container}>{children}</div>
+            <div className={clsx(className, classes.container, overrideClasses?.container)} {...rest}>
+                {children}
+            </div>
         </section>
     );
 }

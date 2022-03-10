@@ -69,7 +69,8 @@ export const styles = {
     defaultBoxShadow: `0 4px 30px rgba(255, 255, 255, 0.1)`,
     defaultOpacity: 0.8,
     defaultTransition: ".2s ease-in-out",
-    maxWidth: darkTheme.breakpoints.values.xl,
+    defaultBorderRadius: 4,
+    maxWidth: darkTheme.breakpoints.values.lg,
     maxWidthXl: darkTheme.breakpoints.values.xl,
     cssImportant: "!important",
 };

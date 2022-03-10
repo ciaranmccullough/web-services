@@ -2,7 +2,6 @@ import Link from "@mui/material/Link";
 import { Theme, Typography, useTheme } from "@mui/material";
 import { NavHashLink } from "react-router-hash-link";
 import { pageRoutes } from "../../../config";
-import Spacer from "../../spacer/Spacer";
 import { createStyles, makeStyles } from "@mui/styles";
 import { motion } from "framer-motion";
 import SocialCard from "../../socialCard/SocialCard";
@@ -32,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
             "& a:hover": {
                 opacity: styles.defaultOpacity,
             },
+            gap: theme.spacing(2),
         },
         link: {
             textTransform: "capitalize",
@@ -57,21 +57,18 @@ export default function DesktopNavbar() {
         <motion.nav className={classes.root} variants={container} initial="hidden" animate="show">
             <div className={classes.nav}>
                 {Object.entries(pageRoutes.home).map((item, index) => (
-                    <>
-                        <Link
-                            key={`${index}_${item[0]}`}
-                            underline="none"
-                            color={theme.palette.primary.contrastText}
-                            component={NavHashLink}
-                            smooth
-                            to={item[1]}
-                        >
-                            <Typography className={classes.link} variant="body1">
-                                {item[0]}
-                            </Typography>
-                        </Link>
-                        <Spacer size={2} />
-                    </>
+                    <Link
+                        key={`${index}_${item[0]}`}
+                        underline="none"
+                        color={theme.palette.primary.contrastText}
+                        component={NavHashLink}
+                        smooth
+                        to={item[1]}
+                    >
+                        <Typography className={classes.link} variant="body1">
+                            {item[0]}
+                        </Typography>
+                    </Link>
                 ))}
             </div>
             <SocialCard />

@@ -42,6 +42,7 @@ export default function Home() {
             <div className={classes.root}>
                 <Hero />
                 <Projects />
+
                 <Skills />
                 <Contact />
             </div>
