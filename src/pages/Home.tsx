@@ -1,4 +1,4 @@
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { makeStyles, createStyles } from "@mui/styles";
 import { Theme, useTheme } from "@mui/material";
 import Layout from "../components/layout/Layout";

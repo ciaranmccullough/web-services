@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "@mui/material/Button";
 
 interface IProps {
@@ -6,7 +7,7 @@ interface IProps {
     disabledProps: any;
 }
 
-const resetButton = (props: any) => <button {...props} type="reset" />;
+const resetButton = React.forwardRef((props: any, ref) => <button {...props} type="reset" />);
 
 export default function ResetButton({ text, resetVariant = "outlined", disabledProps }: IProps) {
     return (

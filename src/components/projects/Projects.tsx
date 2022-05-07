@@ -35,7 +35,7 @@ const useStyles = (isMobile: boolean, md: boolean) =>
             text: {},
             grid: {
                 display: "grid",
-                gridTemplateColumns: md ? "1fr" : "repeat(3, 1fr)",
+                // gridTemplateColumns: md ? "1fr" : "repeat(3, 1fr)",
                 gap: isMobile ? theme.spacing(2) : theme.spacing(4),
             },
             card: {
@@ -150,7 +150,13 @@ export default function Projects() {
                         </Typography>
                         <Spacer size={2} />
                     </div>
-                    <motion.div className={classes.grid} variants={container} initial="hidden" animate={controls}>
+                    <motion.div
+                        style={{ gridTemplateColumns: projects.length === 2 ? "repeat(2, 1fr)" : "repeat(3, 1fr)" }}
+                        className={classes.grid}
+                        variants={container}
+                        initial="hidden"
+                        animate={controls}
+                    >
                         {mapSkillsCardsWithAnimation(projects, item)}
                     </motion.div>
                 </Paper>
