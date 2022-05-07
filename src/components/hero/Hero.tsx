@@ -54,23 +54,23 @@ export default function Hero() {
     const isMobile = useIsMobile();
     const classes = useStyles(isMobile, lightMode)();
 
-    const sentence = {
-        hidden: { opacity: 1 },
-        visible: {
-            opacity: 1,
-            transition: {
-                delay: 0.5,
-                staggerChildren: 0.15,
-            },
-        },
-    };
+    // const sentence = {
+    //     hidden: { opacity: 1 },
+    //     visible: {
+    //         opacity: 1,
+    //         transition: {
+    //             delay: 0.5,
+    //             staggerChildren: 0.15,
+    //         },
+    //     },
+    // };
 
-    const letter = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-        },
-    };
+    // const letter = {
+    //     hidden: { opacity: 0 },
+    //     visible: {
+    //         opacity: 1,
+    //     },
+    // };
 
     const accents = {
         hidden: { opacity: 0 },
