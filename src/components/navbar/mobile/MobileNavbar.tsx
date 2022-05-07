@@ -10,6 +10,7 @@ import { pageRoutes } from "../../../config";
 import Link from "@mui/material/Link";
 import Spacer from "../../spacer/Spacer";
 import SocialCard from "../../socialCard/SocialCard";
+import ThemeSwitcher from "../../themeSwitcher/ThemeSwitcher";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -84,6 +85,8 @@ export default function MobileNavbar() {
                 ))}
                 <Spacer size={1} />
                 <SocialCard />
+                <Spacer size={1} />
+                <ThemeSwitcher />
                 <Spacer size={2} />
             </div>
         </Box>
@@ -93,7 +96,7 @@ export default function MobileNavbar() {
         <div className={classes.root}>
             {(["top"] as const).map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <IconButton color="inherit" onClick={toggleDrawer(anchor, true)}>
+                    <IconButton sx={{ color: theme.palette.primary.contrastText }} onClick={toggleDrawer(anchor, true)}>
                         <MenuIcon fontSize="large">{anchor}</MenuIcon>
                     </IconButton>
                     <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>

@@ -6,6 +6,8 @@ import { createStyles, makeStyles } from "@mui/styles";
 import { motion } from "framer-motion";
 import SocialCard from "../../socialCard/SocialCard";
 import { styles } from "../../../theme";
+import ThemeSwitcher from "../../themeSwitcher/ThemeSwitcher";
+import Spacer from "../../spacer/Spacer";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,6 +38,10 @@ const useStyles = makeStyles((theme: Theme) =>
         link: {
             textTransform: "capitalize",
         },
+        row: {
+            display: "flex",
+            alignItems: "center",
+        },
     })
 );
 
@@ -60,7 +66,7 @@ export default function DesktopNavbar() {
                     <Link
                         key={`${index}_${item[0]}`}
                         underline="none"
-                        color={theme.palette.primary.contrastText}
+                        color={theme.palette.text.primary}
                         component={NavHashLink}
                         smooth
                         to={item[1]}
@@ -71,7 +77,11 @@ export default function DesktopNavbar() {
                     </Link>
                 ))}
             </div>
-            <SocialCard />
+            <div className={classes.row}>
+                <ThemeSwitcher />
+                <Spacer size={1} />
+                <SocialCard />
+            </div>
         </motion.nav>
     );
 }

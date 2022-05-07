@@ -6,11 +6,13 @@ import FullPageSection from "../fullPage/FullPageSection";
 import Spacer from "../spacer/Spacer";
 import { motion } from "framer-motion";
 import { pageRoutes } from "../../config";
-import SunTornado from "../../assets/backgrounds/SunTornado.svg";
+import SunTornadoDark from "../../assets/backgrounds/SunTornado.svg";
+import SunTornadoLight from "../../assets/backgrounds/SunTornadoLight.svg";
 import { data } from "../../data/hero";
 import { styles } from "../../theme";
+import { useLightTheme } from "../../contexts/theme/ThemeContext";
 
-const useStyles = (isMobile: boolean) =>
+const useStyles = (isMobile: boolean, lightMode: boolean) =>
     makeStyles((theme: Theme) =>
         createStyles({
             root: {
@@ -18,13 +20,12 @@ const useStyles = (isMobile: boolean) =>
                 placeItems: "center",
                 backgroundColor: theme.palette.background.default,
                 width: "100%",
-                backgroundImage: `url(${SunTornado})`,
+                backgroundImage: `url(${lightMode ? SunTornadoLight : SunTornadoDark})`,
                 backgroundAttachment: "fixed",
                 backgroundSize: "cover",
                 paddingTop: 57,
             },
             text: {
-                color: theme.palette.primary.contrastText,
                 textAlign: isMobile ? "center" : "left",
             },
             container: {
@@ -49,8 +50,9 @@ const useStyles = (isMobile: boolean) =>
     );
 
 export default function Hero() {
+    const { lightMode } = useLightTheme();
     const isMobile = useIsMobile();
-    const classes = useStyles(isMobile)();
+    const classes = useStyles(isMobile, lightMode)();
 
     const sentence = {
         hidden: { opacity: 1 },

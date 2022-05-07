@@ -13,6 +13,7 @@ import { useInView } from "react-intersection-observer";
 import { IProject } from "../../interfaces/IProject";
 import { projectData, projects } from "../../data/project";
 import { styles } from "../../theme";
+import { useLightTheme } from "../../contexts/theme/ThemeContext";
 
 const useStyles = (isMobile: boolean, md: boolean) =>
     makeStyles((theme: Theme) =>
@@ -29,12 +30,9 @@ const useStyles = (isMobile: boolean, md: boolean) =>
                 alignItems: isMobile ? "center" : "flex-start",
             },
             subHeading: {
-                color: theme.palette.primary.contrastText,
                 textAlign: isMobile ? "center" : "left",
             },
-            text: {
-                color: "white",
-            },
+            text: {},
             grid: {
                 display: "grid",
                 gridTemplateColumns: md ? "1fr" : "repeat(3, 1fr)",
@@ -53,6 +51,7 @@ const useStyles = (isMobile: boolean, md: boolean) =>
 export default function Projects() {
     const isMobile = useIsMobile();
     const theme = useTheme();
+    const { lightMode } = useLightTheme();
     const md = useMediaQuery(theme.breakpoints.down("md"));
     const classes = useStyles(isMobile, md)();
     const controls = useAnimation();
@@ -130,7 +129,7 @@ export default function Projects() {
                     ref={ref}
                     className={classes.card}
                     sx={{
-                        backgroundColor: theme.palette.grey[900],
+                        backgroundColor: lightMode ? theme.palette.grey[300] : theme.palette.grey[900],
                     }}
                     elevation={3}
                     component={motion.div}
@@ -156,7 +155,7 @@ export default function Projects() {
                     </motion.div>
                 </Paper>
                 <Spacer size={2} />
-                <OutlinedButton text={projectData.buttonText} to={pageRoutes.home.skills} />
+                {!isMobile && <OutlinedButton text={projectData.buttonText} to={pageRoutes.home.skills} />}
             </div>
         </FullPageSection>
     );

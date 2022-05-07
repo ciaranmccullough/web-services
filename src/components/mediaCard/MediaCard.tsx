@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material";
+import { useLightTheme } from "../../contexts/theme/ThemeContext";
 
 interface IProps {
     title: string;
@@ -16,10 +17,21 @@ interface IProps {
 
 export default function MediaCard({ title, link, imgUrl, description }: IProps) {
     const theme = useTheme();
+    const { lightMode } = useLightTheme();
 
     return (
-        <Paper elevation={3} sx={{ padding: "20px", backgroundColor: theme.palette.grey[800] }}>
-            <Card sx={{ backgroundColor: theme.palette.grey[700] }}>
+        <Paper
+            elevation={3}
+            sx={{
+                padding: "20px",
+                backgroundColor: lightMode ? theme.palette.grey[200] : theme.palette.grey[800],
+            }}
+        >
+            <Card
+                sx={{
+                    backgroundColor: lightMode ? theme.palette.grey[100] : theme.palette.grey[700],
+                }}
+            >
                 <CardMedia component="img" height="140" src={imgUrl} alt="green iguana" />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

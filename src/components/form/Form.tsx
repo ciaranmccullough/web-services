@@ -9,8 +9,9 @@ import Spacer from "../spacer/Spacer";
 import ResetButton from "../buttons/ResetButton";
 import SubmitButton from "../buttons/SubmitButton";
 import { styles } from "../../theme";
+import { useLightTheme } from "../../contexts/theme/ThemeContext";
 
-const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
+const useStyles = (isMobile: boolean, md: boolean, lg: boolean, lightMode: boolean) =>
     makeStyles((theme: Theme) =>
         createStyles({
             root: {},
@@ -19,7 +20,7 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
                 flexDirection: md ? "column" : "row",
             },
             formFields: {
-                backgroundColor: theme.palette.grey[800],
+                backgroundColor: lightMode ? theme.palette.grey[400] : theme.palette.grey[800],
                 padding: theme.spacing(isMobile ? 2 : 4),
                 flex: lg ? 2 : 1,
                 display: "flex",
@@ -28,25 +29,23 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
                     ? `0px 0px ${styles.defaultBorderRadius}px ${styles.defaultBorderRadius}px`
                     : `0px ${styles.defaultBorderRadius}px ${styles.defaultBorderRadius}px 0px`,
             },
-            label: {
-                color: theme.palette.primary.contrastText,
-            },
+            label: {},
             input: {
                 padding: theme.spacing(1),
                 fontSize: 16,
             },
             warning: {
-                color: theme.palette.error.light,
+                color: lightMode ? theme.palette.error.dark : theme.palette.error.light,
                 margin: 0,
             },
             success: {
-                color: theme.palette.success.light,
+                color: lightMode ? theme.palette.success.dark : theme.palette.success.light,
             },
             submitting: {
-                color: theme.palette.warning.light,
+                color: lightMode ? theme.palette.warning.dark : theme.palette.warning.light,
             },
             fail: {
-                color: theme.palette.error.light,
+                color: lightMode ? theme.palette.error.dark : theme.palette.error.light,
             },
             row: {
                 display: "flex",
@@ -82,7 +81,8 @@ export default function Form() {
     const isMobile = useIsMobile();
     const md = useMediaQuery(theme.breakpoints.down("md"));
     const lg = useMediaQuery(theme.breakpoints.down("lg"));
-    const classes = useStyles(isMobile, md, lg)();
+    const { lightMode } = useLightTheme();
+    const classes = useStyles(isMobile, md, lg, lightMode)();
 
     const handleStatusResponse = (ok: boolean, message: string) => {
         setStatus({ ok, message });
@@ -147,11 +147,11 @@ export default function Form() {
                         });
                 }}
             >
-                {({ isSubmitting, resetForm, dirty, isValid }) => (
+                {({ isSubmitting, resetForm, dirty, isValid, touched }) => (
                     <div className={classes.form}>
                         <Paper
                             sx={{
-                                backgroundColor: theme.palette.grey[900],
+                                backgroundColor: lightMode ? theme.palette.grey[600] : theme.palette.grey[900],
                                 padding: theme.spacing(isMobile ? 2 : 4),
                                 flex: 1,
                                 display: "grid",
@@ -235,7 +235,17 @@ export default function Form() {
                                 <div className={classes.row}>
                                     <SubmitButton disabledProps={!(isValid && dirty)} text="submit" />
                                     <Spacer size={4} />
-                                    <ResetButton text="reset" />
+                                    <ResetButton
+                                        disabledProps={
+                                            !touched.email &&
+                                            !touched.firstName &&
+                                            !touched.surName &&
+                                            !touched.message &&
+                                            !touched.phone
+                                        }
+                                        resetVariant={lightMode ? "contained" : "outlined"}
+                                        text="reset"
+                                    />
                                 </div>
                             )}
                             {status?.ok === false && (

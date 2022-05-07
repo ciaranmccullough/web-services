@@ -3,6 +3,7 @@ import { AppBar, Theme, Toolbar, Slide, useScrollTrigger, useTheme } from "@mui/
 import { createStyles, makeStyles } from "@mui/styles";
 import Navbar from "../navbar/Navbar";
 import { styles } from "../../theme";
+import { useLightTheme } from "../../contexts/theme/ThemeContext";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -32,11 +33,12 @@ function HideOnScroll({ children }: IProps) {
 
 export default function Header() {
     const classes = useStyles();
+    const { lightMode } = useLightTheme();
     const theme = useTheme();
 
     return (
         <HideOnScroll>
-            <AppBar sx={{ backgroundColor: theme.palette.grey[900] }}>
+            <AppBar sx={{ backgroundColor: lightMode ? theme.palette.grey[300] : theme.palette.grey[900] }}>
                 <Toolbar className={classes.toolbar}>
                     <Navbar />
                 </Toolbar>

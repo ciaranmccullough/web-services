@@ -6,17 +6,19 @@ import FullPageSection from "../fullPage/FullPageSection";
 import Spacer from "../spacer/Spacer";
 import Form from "../form/Form";
 import DiamondBackground from "../../assets/backgrounds/DiamondBackground.svg";
+import DiamondBackgroundLight from "../../assets/backgrounds/DiamondBackgroundLight.svg";
 import { data } from "../../data/contact";
 import { styles } from "../../theme";
+import { useLightTheme } from "../../contexts/theme/ThemeContext";
 
-const useStyles = (isMobile: boolean) =>
+const useStyles = (isMobile: boolean, lightMode: boolean) =>
     makeStyles((theme: Theme) =>
         createStyles({
             root: {
                 display: "grid",
                 placeItems: "start center",
                 backgroundColor: theme.palette.background.default,
-                backgroundImage: `url(${DiamondBackground})`,
+                backgroundImage: `url(${lightMode ? DiamondBackgroundLight : DiamondBackground})`,
                 backgroundAttachment: "fixed",
                 backgroundSize: "cover",
                 minHeight: "unset" + styles.cssImportant,
@@ -26,7 +28,6 @@ const useStyles = (isMobile: boolean) =>
                 flexDirection: "column",
             },
             text: {
-                color: theme.palette.primary.contrastText,
                 alignSelf: isMobile ? "center" : "flex-start",
             },
             card: {
@@ -37,7 +38,6 @@ const useStyles = (isMobile: boolean) =>
                 flexWrap: "wrap",
             },
             subHeading: {
-                color: theme.palette.primary.contrastText,
                 textAlign: isMobile ? "center" : "left",
             },
             row: {
@@ -50,7 +50,8 @@ const useStyles = (isMobile: boolean) =>
 
 export default function Contact() {
     const isMobile = useIsMobile();
-    const classes = useStyles(isMobile)();
+    const { lightMode } = useLightTheme();
+    const classes = useStyles(isMobile, lightMode)();
 
     return (
         <FullPageSection classes={{ root: classes.root }} id={pageRoutes.home.contact.slice(1)}>

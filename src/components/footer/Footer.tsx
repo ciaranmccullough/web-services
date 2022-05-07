@@ -5,14 +5,14 @@ import SocialCard from "../socialCard/SocialCard";
 import Spacer from "../spacer/Spacer";
 import useIsMobile from "../../hooks/useIsMobile";
 import { data } from "../../data/footer";
+import { useLightTheme } from "../../contexts/theme/ThemeContext";
 
-const useStyles = (isMobile: boolean) =>
+const useStyles = (isMobile: boolean, lightMode: boolean) =>
     makeStyles((theme: Theme) =>
         createStyles({
             root: {
                 minHeight: 55,
-                backgroundColor: theme.palette.grey[900],
-                color: theme.palette.primary.contrastText,
+                backgroundColor: lightMode ? theme.palette.grey[300] : theme.palette.grey[900],
                 display: "flex",
                 alignItems: "center",
             },
@@ -35,7 +35,8 @@ const useStyles = (isMobile: boolean) =>
 
 export default function Footer() {
     const isMobile = useIsMobile();
-    const classes = useStyles(isMobile)();
+    const { lightMode } = useLightTheme();
+    const classes = useStyles(isMobile, lightMode)();
 
     function getCurrentYear() {
         const date = new Date();

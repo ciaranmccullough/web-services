@@ -13,6 +13,7 @@ import IconCard from "../iconCard/IconCard";
 import { ICard } from "../../interfaces/ISkills";
 import { everyDaySkills, experienceSkills, learningSkills, skillsData } from "../../data/skills";
 import { styles } from "../../theme";
+import { useLightTheme } from "../../contexts/theme/ThemeContext";
 
 const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
     makeStyles((theme: Theme) =>
@@ -29,7 +30,6 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
                 alignItems: isMobile ? "center" : "flex-start",
             },
             subHeading: {
-                color: theme.palette.primary.contrastText,
                 textAlign: isMobile ? "center" : "left",
             },
             card: {
@@ -48,7 +48,6 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
                 gap: isMobile ? theme.spacing(2) : theme.spacing(4),
             },
             text: {
-                color: theme.palette.primary.contrastText,
                 textAlign: isMobile ? "center" : "left",
             },
         })
@@ -57,6 +56,7 @@ const useStyles = (isMobile: boolean, md: boolean, lg: boolean) =>
 export default function Skills() {
     const isMobile = useIsMobile();
     const theme = useTheme();
+    const { lightMode } = useLightTheme();
     const md = useMediaQuery(theme.breakpoints.down("md"));
     const lg = useMediaQuery(theme.breakpoints.down("lg"));
     const classes = useStyles(isMobile, md, lg)();
@@ -132,7 +132,7 @@ export default function Skills() {
                         ref={ref}
                         className={classes.card}
                         sx={{
-                            backgroundColor: theme.palette.grey[900],
+                            backgroundColor: lightMode ? theme.palette.grey[300] : theme.palette.grey[900],
                         }}
                         elevation={3}
                         component={motion.div}
@@ -161,7 +161,7 @@ export default function Skills() {
                     <Paper
                         className={classes.card}
                         sx={{
-                            backgroundColor: theme.palette.grey[900],
+                            backgroundColor: lightMode ? theme.palette.grey[300] : theme.palette.grey[900],
                         }}
                         elevation={3}
                         component={motion.div}
@@ -190,7 +190,7 @@ export default function Skills() {
                     <Paper
                         className={classes.card}
                         sx={{
-                            backgroundColor: theme.palette.grey[900],
+                            backgroundColor: lightMode ? theme.palette.grey[300] : theme.palette.grey[900],
                         }}
                         elevation={3}
                         component={motion.div}
@@ -216,7 +216,7 @@ export default function Skills() {
                         </motion.div>
                     </Paper>
                     <Spacer size={2} />
-                    <ContainedButton text={skillsData.buttonText} to={pageRoutes.home.contact} />
+                    {!isMobile && <ContainedButton text={skillsData.buttonText} to={pageRoutes.home.contact} />}
                 </div>
             </FullPageSection>
         </>
