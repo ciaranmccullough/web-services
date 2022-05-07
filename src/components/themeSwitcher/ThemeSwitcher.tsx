@@ -16,7 +16,12 @@ export default function ThemeSwitcher() {
 
     return (
         <>
-            <IconButton style={{ padding: isMobile ? "8px 0" : 8 }} onClick={handleSetLightMode} disableFocusRipple>
+            <IconButton
+                aria-label="icon-button"
+                style={{ padding: isMobile ? "8px 0" : 8 }}
+                onClick={handleSetLightMode}
+                disableFocusRipple
+            >
                 {icon}
             </IconButton>
         </>

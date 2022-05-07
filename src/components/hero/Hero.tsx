@@ -88,7 +88,7 @@ export default function Hero() {
         <>
             <FullPageSection classes={{ root: classes.root, container: classes.heroContainer }}>
                 <div className={classes.container}>
-                    <motion.div className={classes.content} variants={sentence} initial="hidden" animate="visible">
+                    {/* <motion.div className={classes.content} variants={sentence} initial="hidden" animate="visible">
                         <div className={classes.textBox}>
                             {heroText.split(" ").map((char, index) => {
                                 return (
@@ -105,7 +105,10 @@ export default function Hero() {
                             })}
                         </div>
                         <Spacer size={2} />
-                    </motion.div>
+                    </motion.div> */}
+                    <Typography className={classes.text} variant={isMobile ? "h4" : "h2"}>
+                        {heroText}
+                    </Typography>
                     <Spacer size={2} />
                     <motion.div initial="hidden" animate="visible" variants={accents}>
                         <ContainedButton text={data.buttonText} to={pageRoutes.home.projects} />
