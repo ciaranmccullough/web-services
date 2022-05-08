@@ -39,7 +39,7 @@ export default function MediaCard({ title, link, imgUrl, description }: IProps) 
                     backgroundColor: lightMode ? theme.palette.grey[100] : theme.palette.grey[700],
                 }}
             >
-                <CardMedia component="img" height="140" src={imgUrl} alt="green iguana" />
+                <CardMedia component="img" height={isMobile ? 200 : 250} src={imgUrl} alt="green iguana" />
                 <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
                         {title}

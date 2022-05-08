@@ -35,7 +35,7 @@ const useStyles = (isMobile: boolean, md: boolean) =>
             text: {},
             grid: {
                 display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "2fr",
+                gridTemplateColumns: md ? "1fr" : "repeat(2, 1fr)",
                 gap: isMobile ? theme.spacing(2) : theme.spacing(4),
             },
             card: {
