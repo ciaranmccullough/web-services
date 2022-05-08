@@ -1,0 +1,22 @@
+{
+  "name": "web-services",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ciaranmccullough/web-services.git",
+  "author": "ciaranmccullough <59839106+ciaranmccullough@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "setup": "concurrently --kill-others-on-fail  \"cd server && yarn\" \"cd client && yarn\"",
+    "client:build": "cd client && yarn build",
+    "client:dev": "cd client && yarn start",
+    "server:dev": "cd server && yarn develop",
+    "dev": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn client:dev\"",
+    "client": "cd client && yarn build",
+    "server": "cd server && yarn start",
+    "build": "",
+    "start": "yarn server"
+  },
+  "dependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
