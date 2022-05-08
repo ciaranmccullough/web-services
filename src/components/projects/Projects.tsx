@@ -150,7 +150,13 @@ export default function Projects() {
                         <Spacer size={2} />
                     </div>
                     <motion.div
-                        style={{ gridTemplateColumns: projects.length === 2 ? "repeat(2, 1fr)" : "repeat(3, 1fr)" }}
+                        style={{
+                            gridTemplateColumns: md
+                                ? "1fr"
+                                : projects.length === 2
+                                ? "repeat(2, 1fr)"
+                                : "repeat(3, 1fr)",
+                        }}
                         className={classes.grid}
                         variants={container}
                         initial="hidden"

@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material";
 import { useLightTheme } from "../../contexts/theme/ThemeContext";
+import useIsMobile from "../../hooks/useIsMobile";
 
 interface IProps {
     title: string;
@@ -18,17 +19,23 @@ interface IProps {
 export default function MediaCard({ title, link, imgUrl, description }: IProps) {
     const theme = useTheme();
     const { lightMode } = useLightTheme();
+    const isMobile = useIsMobile();
 
     return (
         <Paper
             elevation={3}
             sx={{
+                height: isMobile ? "unset" : "100%",
                 padding: "20px",
                 backgroundColor: lightMode ? theme.palette.grey[200] : theme.palette.grey[800],
             }}
         >
             <Card
                 sx={{
+                    height: isMobile ? "unset" : "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: isMobile ? "unset" : "space-between",
                     backgroundColor: lightMode ? theme.palette.grey[100] : theme.palette.grey[700],
                 }}
             >
