@@ -1,5 +1,5 @@
 import { IProject, IProjectData } from "../interfaces/IProject";
-import GuestHouseImg from "../assets/img/ivy-gh.jpg";
+// import GuestHouseImg from "../assets/img/ivy-gh.jpg";
 import PersonalSiteImg from "../assets/img/personal-site.jpg";
 
 export const projectData: IProjectData = {
