@@ -13,10 +13,12 @@ interface IProps {
     title: string;
     link: string;
     imgUrl: string;
+    imgAlt: string;
     description: string;
+    buttonText: string;
 }
 
-export default function MediaCard({ title, link, imgUrl, description }: IProps) {
+export default function MediaCard({ title, link, imgUrl, imgAlt, description, buttonText }: IProps) {
     const theme = useTheme();
     const { lightMode } = useLightTheme();
     const isMobile = useIsMobile();
@@ -39,7 +41,7 @@ export default function MediaCard({ title, link, imgUrl, description }: IProps) 
                     backgroundColor: lightMode ? theme.palette.grey[100] : theme.palette.grey[700],
                 }}
             >
-                <CardMedia component="img" height={isMobile ? 200 : 250} src={imgUrl} alt="green iguana" />
+                <CardMedia component="img" height={isMobile ? 200 : 250} src={imgUrl} alt={imgAlt} />
                 <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
                         {title}
@@ -50,7 +52,7 @@ export default function MediaCard({ title, link, imgUrl, description }: IProps) 
                 </CardContent>
                 <CardActions sx={{ padding: "8px 16px" }}>
                     <Link underline="none" target="_blank" rel="noopener" href={link}>
-                        Check it out
+                        {buttonText}
                     </Link>
                 </CardActions>
             </Card>

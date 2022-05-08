@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { pageRoutes } from "../../config";
 import { makeStyles, createStyles } from "@mui/styles";
-import { Theme, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { CircularProgress, Theme, Typography, useMediaQuery, useTheme } from "@mui/material";
 import useIsMobile from "../../hooks/useIsMobile";
 import FullPageSection from "../fullPage/FullPageSection";
 import OutlinedButton from "../buttons/OutlinedButton";
@@ -10,10 +10,12 @@ import MediaCard from "../mediaCard/MediaCard";
 import Paper from "@mui/material/Paper";
 import { Variants, motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { IProject } from "../../interfaces/IProject";
-import { projectData, projects } from "../../data/project";
+import { projectData } from "../../data/project";
 import { styles } from "../../theme";
 import { useLightTheme } from "../../contexts/theme/ThemeContext";
+import { fetchProjects } from "../../apiServices/ApiService";
+import { defaultProjectsResponse } from "../../apiServices/response/IProjectResponse";
+import { IProject, IProjectData } from "../../interfaces/IProject";
 
 const useStyles = (isMobile: boolean, md: boolean) =>
     makeStyles((theme: Theme) =>
@@ -51,6 +53,8 @@ const useStyles = (isMobile: boolean, md: boolean) =>
 export default function Projects() {
     const isMobile = useIsMobile();
     const theme = useTheme();
+    const [loader, setLoader] = useState<boolean>(false);
+    const [projects, setProjects] = useState<IProject>(defaultProjectsResponse);
     const { lightMode } = useLightTheme();
     const md = useMediaQuery(theme.breakpoints.down("md"));
     const classes = useStyles(isMobile, md)();
@@ -104,11 +108,34 @@ export default function Projects() {
         },
     };
 
-    function mapSkillsCardsWithAnimation(arr: IProject[], variant: Variants) {
-        return arr.map((item: IProject, index: number) => {
+    const getAllProjects = () => {
+        setLoader(true);
+        fetchProjects()
+            .then((response) => {
+                console.log(response);
+                setProjects(response);
+            })
+            .finally(() => setLoader(false));
+    };
+
+    useEffect(() => {
+        getAllProjects();
+    }, []);
+
+    console.log(projects.data);
+
+    function mapSkillsCardsWithAnimation(arr: IProject, variant: Variants) {
+        return arr.data.map((item: IProjectData, index: number) => {
             return (
                 <motion.div key={`${index}_${item}`} variants={variant}>
-                    <MediaCard title={item.title} link={item.link} imgUrl={item.img} description={item.description} />
+                    <MediaCard
+                        title={item.attributes.title}
+                        link={item.attributes.link}
+                        imgUrl={item.attributes.image.data.attributes.formats.medium.url}
+                        imgAlt={item.attributes.image.data.attributes.alternativeText}
+                        description={item.attributes.description}
+                        buttonText={item.attributes.buttonText}
+                    />
                 </motion.div>
             );
         });
@@ -151,7 +178,19 @@ export default function Projects() {
                         <Spacer size={2} />
                     </div>
                     <motion.div className={classes.grid} variants={container} initial="hidden" animate={controls}>
-                        {mapSkillsCardsWithAnimation(projects, item)}
+                        {loader ? (
+                            <CircularProgress />
+                        ) : (
+                            <>
+                                {projects.data.length === 0 ? (
+                                    <>
+                                        <Typography>No projects to display</Typography>
+                                    </>
+                                ) : (
+                                    <>{mapSkillsCardsWithAnimation(projects, item)}</>
+                                )}
+                            </>
+                        )}
                     </motion.div>
                 </Paper>
                 <Spacer size={2} />

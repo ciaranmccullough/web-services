@@ -13,14 +13,17 @@
   "dependencies": {
     "@strapi/plugin-i18n": "4.1.9",
     "@strapi/plugin-users-permissions": "4.1.9",
+    "@strapi/provider-upload-cloudinary": "^4.1.9",
     "@strapi/strapi": "4.1.9",
-    "better-sqlite3": "7.4.6"
+    "better-sqlite3": "7.4.6",
+    "pg": "^8.7.3",
+    "pg-connection-string": "^2.5.0"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "5287ffc1-9734-40b4-987b-1f21c2bcd51e"
+    "uuid": "2bb13a64-3e11-4b11-86c7-6548a586501f"
   },
   "engines": {
     "node": ">=12.x.x <=16.x.x",
