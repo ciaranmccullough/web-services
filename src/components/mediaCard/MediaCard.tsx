@@ -34,7 +34,7 @@ export default function MediaCard({ title, link, imgUrl, description }: IProps) 
             >
                 <CardMedia component="img" height="140" src={imgUrl} alt="green iguana" />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="div">
                         {title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

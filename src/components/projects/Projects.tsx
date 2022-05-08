@@ -35,7 +35,6 @@ const useStyles = (isMobile: boolean, md: boolean) =>
             text: {},
             grid: {
                 display: "grid",
-                // gridTemplateColumns: md ? "1fr" : "repeat(3, 1fr)",
                 gap: isMobile ? theme.spacing(2) : theme.spacing(4),
             },
             card: {
@@ -139,9 +138,9 @@ export default function Projects() {
                 >
                     <div>
                         <Typography
-                            variant="h6"
+                            variant="h5"
                             className={classes.subHeading}
-                            component={motion.h6}
+                            component={motion.h5}
                             initial="hidden"
                             animate={controls}
                             variants={text}

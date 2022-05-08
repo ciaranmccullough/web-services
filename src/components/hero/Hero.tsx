@@ -54,30 +54,22 @@ export default function Hero() {
     const isMobile = useIsMobile();
     const classes = useStyles(isMobile, lightMode)();
 
-    // const sentence = {
-    //     hidden: { opacity: 1 },
-    //     visible: {
-    //         opacity: 1,
-    //         transition: {
-    //             delay: 0.5,
-    //             staggerChildren: 0.15,
-    //         },
-    //     },
-    // };
-
-    // const letter = {
-    //     hidden: { opacity: 0 },
-    //     visible: {
-    //         opacity: 1,
-    //     },
-    // };
+    const sentence = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                delay: 0.7,
+            },
+        },
+    };
 
     const accents = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                delay: 2.3,
+                delay: 0.9,
             },
         },
     };
@@ -88,27 +80,11 @@ export default function Hero() {
         <>
             <FullPageSection classes={{ root: classes.root, container: classes.heroContainer }}>
                 <div className={classes.container}>
-                    {/* <motion.div className={classes.content} variants={sentence} initial="hidden" animate="visible">
-                        <div className={classes.textBox}>
-                            {heroText.split(" ").map((char, index) => {
-                                return (
-                                    <Typography
-                                        key={`${index}_${char}`}
-                                        className={classes.text}
-                                        variant={isMobile ? "h4" : "h2"}
-                                        component={motion.span}
-                                        variants={letter}
-                                    >
-                                        {char + (index !== heroText.length - 1 ? "\u00A0" : "")}
-                                    </Typography>
-                                );
-                            })}
-                        </div>
-                        <Spacer size={2} />
-                    </motion.div> */}
-                    <Typography className={classes.text} variant={isMobile ? "h4" : "h2"}>
-                        {heroText}
-                    </Typography>
+                    <motion.div className={classes.content} variants={sentence} initial="hidden" animate="visible">
+                        <Typography className={classes.text} variant={isMobile ? "h4" : "h2"}>
+                            {heroText}
+                        </Typography>
+                    </motion.div>
                     <Spacer size={2} />
                     <motion.div initial="hidden" animate="visible" variants={accents}>
                         <ContainedButton text={data.buttonText} to={pageRoutes.home.projects} />

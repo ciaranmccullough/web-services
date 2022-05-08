@@ -142,9 +142,9 @@ export default function Skills() {
                     >
                         <div>
                             <Typography
-                                variant="h6"
+                                variant="h5"
                                 className={classes.subHeading}
-                                component={motion.h6}
+                                component={motion.h5}
                                 initial="hidden"
                                 animate={controls}
                                 variants={text}
@@ -171,9 +171,9 @@ export default function Skills() {
                     >
                         <div>
                             <Typography
-                                variant="h6"
+                                variant="h5"
                                 className={classes.subHeading}
-                                component={motion.h6}
+                                component={motion.h5}
                                 initial="hidden"
                                 animate={controls}
                                 variants={text}
@@ -200,9 +200,9 @@ export default function Skills() {
                     >
                         <div>
                             <Typography
-                                variant="h6"
+                                variant="h5"
                                 className={classes.subHeading}
-                                component={motion.h6}
+                                component={motion.h5}
                                 initial="hidden"
                                 animate="visible"
                                 variants={text}

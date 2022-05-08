@@ -23,7 +23,7 @@ const button = {
     visible: {
         opacity: 1,
         transition: {
-            delay: 2.5,
+            delay: 1.1,
         },
     },
 };
