@@ -112,7 +112,6 @@ export default function Projects() {
         setLoader(true);
         fetchProjects()
             .then((response) => {
-                console.log(response);
                 setProjects(response);
             })
             .finally(() => setLoader(false));
@@ -121,8 +120,6 @@ export default function Projects() {
     useEffect(() => {
         getAllProjects();
     }, []);
-
-    console.log(projects.data);
 
     function mapSkillsCardsWithAnimation(arr: IProject, variant: Variants) {
         return arr.data.map((item: IProjectData, index: number) => {
