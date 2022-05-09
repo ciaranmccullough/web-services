@@ -34,9 +34,6 @@
         "videos",
         "audios"
       ]
-    },
-    "email": {
-      "type": "email"
     }
   }
 }

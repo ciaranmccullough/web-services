@@ -47,6 +47,9 @@ const useStyles = (isMobile: boolean, md: boolean) =>
                 flexDirection: "column",
                 flexWrap: "wrap",
             },
+            progress: {
+                margin: "0 auto",
+            },
         })
     );
 
@@ -174,11 +177,16 @@ export default function Projects() {
                         </Typography>
                         <Spacer size={2} />
                     </div>
-                    <motion.div className={classes.grid} variants={container} initial="hidden" animate={controls}>
-                        {loader ? (
-                            <CircularProgress />
-                        ) : (
-                            <>
+                    {loader ? (
+                        <CircularProgress classes={{ root: classes.progress }} />
+                    ) : (
+                        <>
+                            <motion.div
+                                className={classes.grid}
+                                variants={container}
+                                initial="hidden"
+                                animate={controls}
+                            >
                                 {projects.data.length === 0 ? (
                                     <>
                                         <Typography>No projects to display</Typography>
@@ -186,9 +194,9 @@ export default function Projects() {
                                 ) : (
                                     <>{mapSkillsCardsWithAnimation(projects, item)}</>
                                 )}
-                            </>
-                        )}
-                    </motion.div>
+                            </motion.div>
+                        </>
+                    )}
                 </Paper>
                 <Spacer size={2} />
                 {!isMobile && <OutlinedButton text={projectData.buttonText} to={pageRoutes.home.skills} />}
