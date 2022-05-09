@@ -32,7 +32,7 @@ const useStyles = (isMobile: boolean, lightMode: boolean) =>
                 display: "flex",
                 flexDirection: "column",
                 alignItems: isMobile ? "center" : "flex-start",
-                marginBottom: 57,
+                marginBottom: isMobile ? 57 : 0,
             },
             heroContainer: {
                 maxWidth: `${styles.maxWidthXl}px` + styles.cssImportant,
